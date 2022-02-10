@@ -1,5 +1,5 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js
+  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js build
 
 PATH: 
   C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;C:\xampp\php;C:\ProgramData\ComposerSetup\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\ProgramData\chocolatey\bin;C:\Program Files (x86)\Yarn\bin\;C:\Program Files\Git\cmd;C:\Program Files\PuTTY\;C:\Program Files (x86)\GitExtensions\;C:\Program Files\nodejs\;C:\Users\senio\AppData\Local\Microsoft\WindowsApps;;C:\Users\senio\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\senio\AppData\Roaming\Composer\vendor\bin;C:\Users\senio\AppData\Local\Yarn\bin;C:\Program Files\kdiff3;C:\Users\senio\AppData\Roaming\npm;C:\Program Files\heroku\bin
@@ -14,20 +14,16 @@ Platform:
   win32 x64
 
 Trace: 
-  Error: https://registry.yarnpkg.com/@mui/icons-material/-/icons-material-5.4.1.tgz: ESOCKETTIMEDOUT
-      at ClientRequest.<anonymous> (C:\Program Files (x86)\Yarn\lib\cli.js:141292:19)
-      at Object.onceWrapper (node:events:509:28)
-      at ClientRequest.emit (node:events:390:28)
-      at TLSSocket.emitRequestTimeout (node:_http_client:758:9)
-      at Object.onceWrapper (node:events:509:28)
-      at TLSSocket.emit (node:events:402:35)
-      at TLSSocket.Socket._onTimeout (node:net:501:8)
-      at listOnTimeout (node:internal/timers:568:17)
-      at processTimers (node:internal/timers:510:7)
+  SyntaxError: C:\Users\senio\Desktop\prog2022\diploma\diploma\package.json: Unexpected token } in JSON at position 1974
+      at JSON.parse (<anonymous>)
+      at C:\Program Files (x86)\Yarn\lib\cli.js:1625:59
+      at Generator.next (<anonymous>)
+      at step (C:\Program Files (x86)\Yarn\lib\cli.js:310:30)
+      at C:\Program Files (x86)\Yarn\lib\cli.js:321:13
 
 npm manifest: 
   {
-    "name": "diploma",
+    "name": "frontend-blog",
     "version": "0.1.0",
     "private": true,
     "dependencies": {
@@ -78,7 +74,7 @@ npm manifest:
       "validator": "^13.7.0"
     },
     "scripts": {
-      "start": "react-scripts start",
+      "start": "node index.js",
       "build": "react-scripts build",
       "test": "react-scripts test",
       "eject": "react-scripts eject"
@@ -100,7 +96,10 @@ npm manifest:
         "last 1 firefox version",
         "last 1 safari version"
       ]
-    }
+    },
+    "optionalDependencies": {
+      "fsevents": "2.1.2"
+    },
   }
 
 yarn manifest: 
