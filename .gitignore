@@ -4,3 +4,5 @@ blog-api/.env
 blog-api/env
 
 build
+
+.env
