@@ -48,7 +48,7 @@ export const PostPage = () => {
         <div className={styles.page__wrapper}>
           <div className={styles.page__header}>
             {postData && postData.photoUrl ? (
-              <img src={`/public/uploads/${postData.photoUrl}`} alt="cover" />
+              <img src={`/public/${postData.photoUrl}`} alt="cover" />
             ) : (
               <img src={BackgroundImg} alt="cover" />
             )}
