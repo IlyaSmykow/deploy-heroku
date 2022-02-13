@@ -1,4 +1,5 @@
 import { postsAPI } from "../../axios/posts";
+import { authAPI } from "../../axios/auth";
 import { actionsPosts } from "../actions/posts_actions";
 
 const initialState = {
@@ -114,11 +115,14 @@ export const getPost = (postId) => {
 export const uploadPost = (post) => {
   return async (dispatch) => {
     try {
-      const { data, status } = await postsAPI.createPost(post);
-      if (status === 201) {
-        dispatch(actionsPosts.toggleMessage("Запись добавлена"));
-        dispatch(actionsPosts.createOnePost(data));
-        dispatch(getAllPosts());
+      const { status } = await authAPI.checkAuth();
+      if (status === 200) {
+        const { data, status } = await postsAPI.createPost(post);
+        if (status === 201) {
+          dispatch(actionsPosts.toggleMessage("Запись добавлена"));
+          dispatch(actionsPosts.createOnePost(data));
+          dispatch(getAllPosts());
+        }
       }
     } catch (error) {
       dispatch(actionsPosts.getError(error.response.data.message));
@@ -190,10 +194,13 @@ export const getOnlyUsersPosts = (userId) => {
 export const deletePost = (postId) => {
   return async (dispatch) => {
     try {
-      const { status } = await postsAPI.deletePost(postId);
-      if (status === 202) {
-        dispatch(getAllPosts());
-        dispatch(actionsPosts.toggleMessage("Запись удалена"));
+      const { status } = await authAPI.checkAuth();
+      if (status === 200) {
+        const { status } = await postsAPI.deletePost(postId);
+        if (status === 202) {
+          dispatch(getAllPosts());
+          dispatch(actionsPosts.toggleMessage("Запись удалена"));
+        }
       }
     } catch (error) {
       dispatch(actionsPosts.getError(error.response.data.message));
@@ -204,11 +211,14 @@ export const deletePost = (postId) => {
 export const editPost = (id, data) => {
   return async (dispatch) => {
     try {
-      const { status } = await postsAPI.editPost(id, data);
-      if (status === 202) {
-        dispatch(getPost(id));
-        dispatch(getAllPosts());
-        dispatch(actionsPosts.toggleMessage("Запись обновлена"));
+      const { status } = await authAPI.checkAuth();
+      if (status === 200) {
+        const { status } = await postsAPI.editPost(id, data);
+        if (status === 202) {
+          dispatch(getPost(id));
+          dispatch(getAllPosts());
+          dispatch(actionsPosts.toggleMessage("Запись обновлена"));
+        }
       }
     } catch (error) {
       dispatch(actionsPosts.getError(error.response.data.message));

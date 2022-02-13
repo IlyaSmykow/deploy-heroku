@@ -1,4 +1,5 @@
 import { commentsAPI } from "../../axios/comments";
+import { authAPI } from "../../axios/auth";
 import { actionsComments } from "../actions/comments_actions";
 
 const initialState = {
@@ -66,10 +67,13 @@ export const getAllComments = () => {
 export const uploadComment = (comment, postId) => {
   return async (dispatch) => {
     try {
-      const { status } = await commentsAPI.createComment(comment);
-      if (status === 201) {
-        dispatch(actionsComments.toggleMessage("Запись добавлена"));
-        dispatch(getAllCommentsOfPost(postId));
+      const { status } = await authAPI.checkAuth();
+      if (status === 200) {
+        const { status } = await commentsAPI.createComment(comment);
+        if (status === 201) {
+          dispatch(actionsComments.toggleMessage("Запись добавлена"));
+          dispatch(getAllCommentsOfPost(postId));
+        }
       }
     } catch (error) {
       dispatch(actionsComments.getError(error.response.data.message));
@@ -93,10 +97,13 @@ export const getOnlyUsersComments = (userId) => {
 export const editComment = (id, text, postId, userId) => {
   return async (dispatch) => {
     try {
-      const { status } = await commentsAPI.editComment(id, text);
-      if (status === 202) {
-        dispatch(getAllCommentsOfPost(postId));
-        dispatch(getOnlyUsersComments(userId));
+      const { status } = await authAPI.checkAuth();
+      if (status === 200) {
+        const { status } = await commentsAPI.editComment(id, text);
+        if (status === 202) {
+          dispatch(getAllCommentsOfPost(postId));
+          dispatch(getOnlyUsersComments(userId));
+        }
       }
     } catch (error) {
       dispatch(actionsComments.getError(error.response.data.message));
@@ -107,14 +114,17 @@ export const editComment = (id, text, postId, userId) => {
 export const deleteComment = (id, postId, userId) => {
   return async (dispatch) => {
     try {
-      const { status } = await commentsAPI.deleteComment(id);
-      if (status === 202) {
-        dispatch(getAllCommentsOfPost(postId));
-        dispatch(getOnlyUsersComments(userId));
-      } else if (status === 403) {
-        dispatch(
-          actionsComments.toggleMessage("У вас нет доступа к этой записи")
-        );
+      const { status } = await authAPI.checkAuth();
+      if (status === 200) {
+        const { status } = await commentsAPI.deleteComment(id);
+        if (status === 202) {
+          dispatch(getAllCommentsOfPost(postId));
+          dispatch(getOnlyUsersComments(userId));
+        } else if (status === 403) {
+          dispatch(
+            actionsComments.toggleMessage("У вас нет доступа к этой записи")
+          );
+        }
       }
     } catch (error) {
       dispatch(actionsComments.getError(error.response.data.message));

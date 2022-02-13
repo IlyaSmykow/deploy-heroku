@@ -5,7 +5,6 @@ import { ModalWindow } from "./components/ModalWindow/ModalWindow";
 import { AppRouter } from "./components/AppRouter/AppRouter";
 import { Alert } from "./components/Alert/Alert";
 import { useSelector } from "react-redux";
-import { getAuth } from "./redux/selectors/authSelectors";
 import { getMessage } from "./redux/selectors/authSelectors";
 import { PostsBlock } from "./components/PostsBlock/PostsBlock";
 import { useDispatch } from "react-redux";
@@ -15,14 +14,10 @@ import { checkUserAuth } from "./redux/reducers/auth_reducer";
 function App() {
   const dispatch = useDispatch();
   const message = useSelector(getMessage);
-  const isAuth = useSelector(getAuth);
 
   useEffect(() => {
-    if (isAuth) {
-      dispatch(checkUserAuth());
-    }
     dispatch(checkUserAuth());
-  }, [dispatch, isAuth]);
+  }, []);
 
   useEffect(() => {
     dispatch(getAllPosts());
