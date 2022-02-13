@@ -7,6 +7,7 @@ import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { getAuth } from "../../redux/selectors/authSelectors";
 import { useNavigate } from "react-router-dom";
+import { toggleActive } from "../../redux/reducers/app_reducer";
 import styles from "./RegForm.module.scss";
 import { InputPassword } from "../../components/InputPassword/InputPassword";
 
@@ -47,6 +48,7 @@ export const RegForm = () => {
   const onSubmit = (data) => {
     const { fullName, email, password } = data;
     dispatch(userRegistration(fullName, email, password));
+    dispatch(toggleActive(false));
     reset();
   };
   return (
