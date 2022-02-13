@@ -157,12 +157,9 @@ export const checkUserAuth = () => {
       const { data, status } = await authAPI.checkAuth();
       if (status === 200) {
         dispatch(getUser(data._id));
-        dispatch(actionsAuth.toggleShowAlert(true));
-        dispatch(actionsAuth.toggleMessage("Мы рады, что вы снова с нами!"));
       }
     } catch (error) {
-      dispatch(actionsAuth.toggleShowAlert(true));
-      dispatch(actionsAuth.toggleMessage("Вы не авторизованы"));
+      console.log("Вы не авторизованы");
     }
   };
 };

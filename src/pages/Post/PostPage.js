@@ -16,6 +16,7 @@ import BackgroundImg from "../../img/400px-React-icon.svg.png";
 import { WaitPost } from "../../components/Loaders/WaitPost";
 import DriveFileRenameOutlineIcon from "@mui/icons-material/DriveFileRenameOutline";
 import ReactMarkdown from "react-markdown";
+import { checkUserAuth } from "../../redux/reducers/auth_reducer";
 
 export const PostPage = () => {
   const postData = useSelector(getPostData);
@@ -35,10 +36,9 @@ export const PostPage = () => {
   const toggleActive = () => {
     if (idUserOwnerPost === userId) {
       navigation(`/edit/${id}`);
+      dispatch(checkUserAuth);
     }
   };
-
-  debugger;
 
   return (
     <>

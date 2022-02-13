@@ -24,8 +24,6 @@ export const Post = ({ id, title, text, createdAt, views, img, userId }) => {
     }
   };
 
-  debugger;
-
   return (
     <div className={styles.post__wrapper}>
       <div className={styles.post__info}>

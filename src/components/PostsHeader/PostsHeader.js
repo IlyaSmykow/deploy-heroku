@@ -10,6 +10,7 @@ import PersonIcon from "@mui/icons-material/Person";
 import { toggleActive } from "../../redux/reducers/app_reducer";
 import { userLogout } from "../../redux/reducers/auth_reducer";
 import { getAuth } from "../../redux/selectors/authSelectors";
+import { checkUserAuth } from "../../redux/reducers/auth_reducer";
 import { getUserData } from "../../redux/selectors/authSelectors";
 import { searchPost, getAllPosts } from "../../redux/reducers/posts_reducer";
 import { useDebounce } from "../../hooks/useDebounce";
@@ -26,6 +27,7 @@ export const PostsHeader = () => {
   const redirect = () => {
     if (auth) {
       navigate("/create");
+      dispatch(checkUserAuth());
     } else {
       dispatch(toggleActive(true));
     }

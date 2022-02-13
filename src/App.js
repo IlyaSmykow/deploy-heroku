@@ -17,7 +17,7 @@ function App() {
 
   useEffect(() => {
     dispatch(checkUserAuth());
-  });
+  }, [dispatch]);
 
   useEffect(() => {
     dispatch(getAllPosts());

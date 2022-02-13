@@ -6,6 +6,7 @@ import { getAuth, getUserData } from "../../redux/selectors/authSelectors";
 import { toggleActive } from "../../redux/reducers/app_reducer";
 import { userLogout, getUser } from "../../redux/reducers/auth_reducer";
 import { NavLink } from "react-router-dom";
+import { checkUserAuth } from "../../redux/reducers/auth_reducer";
 import { useNavigate } from "react-router-dom";
 
 export const SidebarMenu = ({ closeSidebar }) => {
@@ -29,6 +30,11 @@ export const SidebarMenu = ({ closeSidebar }) => {
     }
   };
 
+  const createPost = () => {
+    navigate("/create");
+    dispatch(checkUserAuth());
+  };
+
   const showProfile = () => {
     dispatch(getUser(userData._id));
     navigate("/profile");
@@ -40,7 +46,7 @@ export const SidebarMenu = ({ closeSidebar }) => {
       {isAuth && (
         <>
           <li onClick={showProfile}>Профиль</li>
-          <NavLink to={"/create"}>Создать запись</NavLink>
+          <li onClick={createPost}>Создать запись</li>
         </>
       )}
       {isAuth ? (
