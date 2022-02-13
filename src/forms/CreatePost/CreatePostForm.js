@@ -79,7 +79,7 @@ export const CreatePostForm = () => {
         </div>
         <div className={styles.form__text}>
           <label>Короткое описание</label>
-          <input {...register("text")} />
+          <textarea {...register("text")} />
           {errors.text && <p>{errors.text.message}</p>}
         </div>
         <div className={styles.form__file}>

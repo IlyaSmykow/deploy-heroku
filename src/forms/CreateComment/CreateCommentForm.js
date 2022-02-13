@@ -38,7 +38,7 @@ export const CreateCommentForm = ({ postId }) => {
     <div className={styles.form__wrapper}>
       <form onSubmit={handleSubmit(onSubmit)}>
         <label>Добавить комментарий</label>
-        <input label="text" {...register("text")} />
+        <textarea label="text" {...register("text")} />
         <p>{errors.text?.message}</p>
         <button
           type="submit"
