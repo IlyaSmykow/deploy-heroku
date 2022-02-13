@@ -3,6 +3,5 @@ node_modules
 blog-api/.env
 blog-api/env
 
-build
 
 .env
