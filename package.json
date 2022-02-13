@@ -54,7 +54,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "start:server": "cd blog-api && npm start"
+    "start:server": "cd blog-api && npm start",
+    "server": "nodemon server.js"
   },
   "optionalDependencies": {
     "fsevents": "2.1.2"

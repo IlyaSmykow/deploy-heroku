@@ -10,6 +10,7 @@ import {
   uploadPost,
   toggleMessage,
 } from "../../redux/reducers/posts_reducer";
+import { checkUserAuth } from "../../redux/reducers/auth_reducer";
 import { getMessage, getPostData } from "../../redux/selectors/postsSelectors";
 import { useNavigate } from "react-router-dom";
 import styles from "./CreatePostForm.module.scss";
@@ -49,6 +50,7 @@ export const CreatePostForm = () => {
   });
 
   const onSubmit = async (data) => {
+    dispatch(checkUserAuth());
     const formData = new FormData();
     formData.append("file", inputFileRef.current);
     const { url } = await dispatch(uploadImage(formData));
