@@ -95,7 +95,7 @@ export const EditPostForm = () => {
         </div>
         <div className={styles.form__text}>
           <label>Короткое описание</label>
-          <input value={text} onChange={changeText} />
+          <textarea value={text} onChange={changeText} />
           {errors.text && <p>{errors.text.message}</p>}
         </div>
         <div className={styles.form__file}>

@@ -94,6 +94,7 @@ export const userLogin = (email, password) => {
         dispatch(actionsAuth.login(data));
         dispatch(getUser(data._id));
         localStorage.setItem("token", data.token);
+        dispatch(checkUserAuth());
       }
     } catch (error) {
       if (error.response && error.response.status === 400) {
@@ -121,6 +122,7 @@ export const userRegistration = (fullName, email, password) => {
         dispatch(actionsAuth.registration(data));
         dispatch(getUser(data._id));
         localStorage.setItem("token", data.token);
+        dispatch(checkUserAuth());
       }
     } catch (error) {
       if (error.response && error.response.status === 400) {
