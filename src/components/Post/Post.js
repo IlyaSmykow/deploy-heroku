@@ -43,7 +43,7 @@ export const Post = ({ id, title, text, createdAt, views, img, userId }) => {
       </div>
       {img && (
         <div className={styles.post__image}>
-          <img src={`/build/${img}`} alt="some_image" />
+          <img src={`/build${img}`} alt="some_image" />
         </div>
       )}
       <div className={styles.edit__post_icons}>
